@@ -88,35 +88,34 @@ lib.registerMenu(
     end,
     options = setupStyleOptions()
   }, function(selected)
-    if Selected and #Selected > 0 and (selected == 2 or selected == 3) then
-      lib.setMenuOptions('drivingstyle_calc', {label = '0', icon = 'car'}, 1)
-      for i = 1, #Selected do
-        lib.setMenuOptions('drivingstyle_calc', {
-          label = locale('df_'..((i < 10 and '0'..i) or i)..'_name'),
-          description = locale('df_'..((i < 10 and '0'..i) or i)..'_des'),
-          checked = false
-        }, Selected[i] + 3)
-      end
-      if selected == 3 then
-        local bits = CalculateBits(Selected)
-        if lib.alertDialog({
-          header = locale('header'),
-          content = locale('content', tostring(bits), tostring(To32Bit(bits)), tostring(ToHex(bits))),
-          centered = true,
-          cancel = true,
-          size = 'md',
-          labels = {cancel = locale('discard'), confirm = locale('copy')}
-        }) == 'confirm' then
-          lib.setClipboard(tostring(bits))
-        end
-      else
-        Wait(0)
-        lib.showMenu('drivingstyle_calc')
-      end
+  if Selected and #Selected > 0 and (selected == 2 or selected == 3) then
+    lib.setMenuOptions('drivingstyle_calc', {label = '0', icon = 'car'}, 1)
+    for i = 1, #Selected do
+      lib.setMenuOptions('drivingstyle_calc', {
+        label = locale('df_'..((i < 10 and '0'..i) or i)..'_name'),
+        description = locale('df_'..((i < 10 and '0'..i) or i)..'_des'),
+        checked = false
+      }, Selected[i] + 3)
     end
+    if selected == 3 then
+      local bits = CalculateBits(Selected)
+      if lib.alertDialog({
+        header = locale('header'),
+        content = locale('content', tostring(bits), tostring(To32Bit(bits)), tostring(ToHex(bits))),
+        centered = true,
+        cancel = true,
+        size = 'md',
+        labels = {cancel = locale('discard'), confirm = locale('copy')}
+      }) == 'confirm' then
+        lib.setClipboard(tostring(bits))
+      end
+    else
+      Wait(0)
+      lib.showMenu('drivingstyle_calc')
+    end
+  end
 end)
 
 -------------------------------- NET EVENTS --------------------------------
 
 RegisterNetEvent('don-ds_calc:client:ShowMenu', function() lib.showMenu('drivingstyle_calc') end)
-
