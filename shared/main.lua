@@ -1,13 +1,6 @@
 local DrivingStyles = LoadResourceFile(GetCurrentResourceName(), 'data/drivingStyleFlagValues.json')
 DrivingStyles = DrivingStyles and json.decode(DrivingStyles) or {}
 
---[[ 
-  TODO:
-  - [ ] Change Bits and Hex calculations to use hex value in json file
-  - [ ] Prefer Hex over Bits, and only show bits at final calculations
-  - [ ] Use string manipulation to clean up descriptions and names
-]]--
-
 if not DrivingStyles then
   print('Failed to load driving style flag values.')
   return
