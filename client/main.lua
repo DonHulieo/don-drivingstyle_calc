@@ -1,6 +1,9 @@
 local DrivingStyles = GetDrivingStyles()
 local Selected = {}
 
+---@param tbl table
+---@param value any
+---@return boolean, number
 local function isValueInTable(tbl, value)
   local index = 0
   local found = false

@@ -1,10 +1,7 @@
 local DrivingStyles = LoadResourceFile(GetCurrentResourceName(), 'data/drivingStyleFlagValues.json')
 DrivingStyles = DrivingStyles and json.decode(DrivingStyles) or {}
 
-if not DrivingStyles then
-  print('Failed to load driving style flag values.')
-  return
-end
+if not DrivingStyles then print('Failed to load driving style flag values.') return end
 
 ---@return table DrivingStyles
 function GetDrivingStyles()
@@ -12,7 +9,7 @@ function GetDrivingStyles()
 end
 
 ---@param style string
----@return number
+---@return integer
 function GetStyleIndex(style)
   local index = 0
   for i = 1, #DrivingStyles do
@@ -38,8 +35,8 @@ function GetDrivingStyleName(index, getDesc)
   return name, description
 end
 
----@param bits table Array of bits, e.g. {1, 3, 5, 6} = 2^0 + 2^2 + 2^4 + 2^5 = 1 + 4 + 16 + 32 = 53
----@return number
+---@param bits integer[] Array of bits, e.g. {1, 3, 5, 6} = 2^0 + 2^2 + 2^4 + 2^5 = 1 + 4 + 16 + 32 = 53
+---@return integer
 function CalculateBits(bits)
   if not bits or type(bits[1]) ~= 'number' then return 0 end
   local number = 0
@@ -50,7 +47,7 @@ function CalculateBits(bits)
 end
 
 ---@param number number
----@return number bits
+---@return integer bits
 function To32Bit(number)
   local bits
   for i = 31, 0, -1 do
@@ -60,7 +57,7 @@ function To32Bit(number)
   return bits
 end
 
----@param number number
+---@param number integer
 ---@return string hex
 function ToHex(number)
   local hex = ''
