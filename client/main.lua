@@ -1,6 +1,8 @@
 local DrivingStyles = GetDrivingStyles()
 local Selected = {}
 
+-- TODO: Possibly Make a Locale Folder and Lang files --
+
 local function isValueInTable(tbl, value)
   local index = 0
   local found = false
