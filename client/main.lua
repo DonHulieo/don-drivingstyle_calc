@@ -1,6 +1,8 @@
 local DrivingStyles = GetDrivingStyles()
 local Selected = {}
 
+-------------------------------- FUNCTIONS --------------------------------
+
 ---@param tbl table
 ---@param value any
 ---@return boolean, number
@@ -17,6 +19,8 @@ local function isValueInTable(tbl, value)
   return found, index
 end
 
+lib.locale()
+
 local function setupStyleOptions()
   local options = {
   {
@@ -24,13 +28,13 @@ local function setupStyleOptions()
     defaultIndex = 1,
     icon = 'car'
   }, {
-    label = 'Reset',
+    label = locale('reset'),
     close = true,
     defaultIndex = 2,
     icon = 'rotate-right',
     args = Selected
   }, {
-    label = 'Calculate',
+    label = locale('calculate'),
     close = true,
     defaultIndex = 3,
     icon = 'calculator',
@@ -39,9 +43,9 @@ local function setupStyleOptions()
   for i = 1, #DrivingStyles - 1 do
     local index = #options + 1
     options[index] = {
-      label = DrivingStyles[i].name,
+      label = locale('df_'..((i < 10 and '0'..i) or i)..'_name'),
       defaultIndex = index,
-      description = DrivingStyles[i].description,
+      description = locale('df_'..((i < 10 and '0'..i) or i)..'_des'),
       checked = false
     }
   end
@@ -51,7 +55,7 @@ end
 lib.registerMenu(
   {
     id = 'drivingstyle_calc',
-    title = 'Driving Style Calculator',
+    title = locale('title'),
     position = 'top-right',
     canClose = true,
     onCheck = function(selected, checked)
@@ -70,8 +74,8 @@ lib.registerMenu(
           lib.setMenuOptions('drivingstyle_calc', {label = bits, icon = 'car'}, 1)
         end
         lib.setMenuOptions('drivingstyle_calc', {
-          label = DrivingStyles[i].name,
-          description = DrivingStyles[i].description,
+          label = locale('df_'..((i < 10 and '0'..i) or i)..'_name'),
+          description = locale('df_'..((i < 10 and '0'..i) or i)..'_des'),
           checked = inTable
         }, i + 3)
       end
@@ -88,20 +92,20 @@ lib.registerMenu(
       lib.setMenuOptions('drivingstyle_calc', {label = '0', icon = 'car'}, 1)
       for i = 1, #Selected do
         lib.setMenuOptions('drivingstyle_calc', {
-          label = DrivingStyles[Selected[i]].name,
-          description = DrivingStyles[Selected[i]].description,
+          label = locale('df_'..((i < 10 and '0'..i) or i)..'_name'),
+          description = locale('df_'..((i < 10 and '0'..i) or i)..'_des'),
           checked = false
         }, Selected[i] + 3)
       end
       if selected == 3 then
         local bits = CalculateBits(Selected)
         if lib.alertDialog({
-          header = 'Driving Style Flags',
-          content = 'Integer: ' .. bits .. '\n\nBinary: ' .. To32Bit(bits) .. '\n\nHex: 0x' .. ToHex(bits) .. '\n\nCopy to clipboard?',
+          header = locale('header'),
+          content = locale('content', tostring(bits), tostring(To32Bit(bits)), tostring(ToHex(bits))),
           centered = true,
           cancel = true,
           size = 'md',
-          labels = {cancel = 'Discard', confirm = 'Copy'}
+          labels = {cancel = locale('discard'), confirm = locale('copy')}
         }) == 'confirm' then
           lib.setClipboard(tostring(bits))
         end
@@ -112,6 +116,7 @@ lib.registerMenu(
     end
 end)
 
-RegisterCommand('calc', function()
-  lib.showMenu('drivingstyle_calc')
-end)
+-------------------------------- NET EVENTS --------------------------------
+
+RegisterNetEvent('don-ds_calc:client:ShowMenu', function() lib.showMenu('drivingstyle_calc') end)
+

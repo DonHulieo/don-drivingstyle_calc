@@ -1,7 +1,8 @@
 local DrivingStyles = LoadResourceFile(GetCurrentResourceName(), 'data/drivingStyleFlagValues.json')
 DrivingStyles = DrivingStyles and json.decode(DrivingStyles) or {}
-
 if not DrivingStyles then print('Failed to load driving style flag values.') return end
+
+-------------------------------- FUNCTIONS --------------------------------
 
 ---@return table DrivingStyles
 function GetDrivingStyles()

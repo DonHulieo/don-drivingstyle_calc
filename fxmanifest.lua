@@ -8,10 +8,12 @@ url ''
 
 shared_scripts {'@ox_lib/init.lua', 'shared/config.lua', 'shared/main.lua'}
 
+server_script 'server/main.lua'
+
 client_script 'client/main.lua'
 
-file 'data/drivingStyleFlagValues.json'
+files {'data/drivingStyleFlagValues.json', 'locales/*.json'}
 
-ox_libs {'alert', 'clipboard', 'menu'}
+ox_libs {'alert', 'acl', 'clipboard', 'locale', 'menu', 'version'}
 
 lua54 'yes'
