@@ -3,7 +3,7 @@ game 'gta5'
 
 author 'DonHulieo'
 description 'A FiveM VehicleAI Driving Style Calculator'
-version '1.0.0'
+version '1.0.1'
 url 'https://github.com/DonHulieo/don-drivingstyle_calc'
 
 shared_scripts {'@ox_lib/init.lua', 'shared/config.lua', 'shared/main.lua'}

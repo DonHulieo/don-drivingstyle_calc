@@ -118,4 +118,4 @@ end)
 
 -------------------------------- NET EVENTS --------------------------------
 
-RegisterNetEvent('don-ds_calc:client:ShowMenu', function() lib.showMenu('drivingstyle_calc') end)
+RegisterNetEvent('don-ds_calc:client:ShowMenu', function() Selected = {}; lib.showMenu('drivingstyle_calc') end)

@@ -19,24 +19,20 @@ An In-Game Tool for Calculating Driving Style Flags.
 
 - [DurtyFrees' Data Dumps](https://github.com/DurtyFree/gta-v-data-dumps) for the driving style flags.
 
-<!-- TODO: -->
-<!-- [ ] Add a screenshot of the menu to Preview. -->
-<!-- [ ] Add a screenshot of the menu highlighting buttons. -->
-
 ### Preview
+
+![Preview](preview.png)
 
 ### Installation
 
 #### Dependencies
-
-**Depending on your Framework, you will need to have installed either of the following dependencies:**
 
 - [ox_lib](https://github.com/overextended/ox_lib)
 
 #### Initial Setup
 
 - Always use the latest FiveM artifacts (tested on 6683), you can find them [here](https://runtime.fivem.net/artifacts/fivem/build_server_windows/master/).
-- Download the latest release from GitHub.
+- Download the latest release from GitHub [here](https://github.com/DonHulieo/don-drivingstyle_calc/releases).
 - Extract the contents of the zip file into your resources folder, into a folder which starts after `ox_lib`` or;
 - Ensure the script in your `server.cfg` after `ox_lib` or the folder that contains `ox_lib` is ensured.
 - Configure both the globals `Config.Command` and `Config.UserLevel` before starting the script, to ensure correct startup and commands are set to your liking.
