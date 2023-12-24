@@ -18,6 +18,7 @@ An In-Game Tool for Calculating Driving Style Flags.
 ### Credits
 
 - [DurtyFrees' Data Dumps](https://github.com/DurtyFree/gta-v-data-dumps) for the driving style flags.
+- [Vespura's Driving Style Calculator](https://vespura.com/fivem/drivingstyle/) for the inspiration on the Driving Style Calculator.
 
 ### Preview
 
